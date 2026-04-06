@@ -6,7 +6,7 @@ function adicionarElemento() {//interação direta com o html, por isso tem o fu
   const nome = document.getElementById("txtnovoNome");//colocando o nome no novoElemento
   const cpf = document.getElementById("txtnovoCpf");//ADD CPF
 
-  const novoAtendimento = new Atendimento(nome.value,cpf.value);
+  const novoAtendimento = new Atendimento(nome.value,cpf.value); //A inserção na fila deve ser de objetos do tipo atendimento
 
   if (minhaFila.enqueue(novoAtendimento)) {//se deu certo de inserir
     mostrarFila(); //mostrar fila
@@ -42,6 +42,7 @@ function adicionarElemento() {//interação direta com o html, por isso tem o fu
     }
   }*/
 
+    //Atender pessoa, mostrar hora de entrada, saída e tempo de fila
 
   function removerElemento(){ //funcao remove elemento
     let removido = minhaFila.dequeue(); //chama método dequeue, remove primeiro elemento
@@ -52,13 +53,13 @@ function adicionarElemento() {//interação direta com o html, por isso tem o fu
       const tempoEspera = calcularDiferencaHoras(removido.hora, horaSaida); ////chama a funcao diferença de horas para calcular o tempo de espera
       
       const mensagem = `Atendido: ${removido.nome} | Entrada: ${removido.hora} | Saída: ${horaSaida} | Tempo: ${tempoEspera}`;//mensagem exibida no painel e salva localStorage
-      mostrarFila(); // Atualiza o label na tela
+      mostrarFila(); // Atualiza o label na tela; Apresentar pessoas na fila (Mostra o nome de todos da fila)
 
       //Insere uma mensagem dinâmica no HTML
       mensagemRemocao.textContent = (`Atendido: ${removido.nome}, Chegou ás ${removido.hora} está sendo atendido(a) às ${horaSaida}. Tempo de espera: ${tempoEspera}`)
       
       // Armazenar no localStorage para o painel. Chave: ultimoAtendimento, mensagem: mensagem
-      localStorage.setItem('ultimoAtendido', mensagem);
+      localStorage.setItem('ultimoAtendido', mensagem); //Ao remover uma pessoa da fila (no processo de atendimento, realizado no filaController.js), deve-se armazenar os dados do último atendido no localStorage.
 
     }
     else {
@@ -68,7 +69,7 @@ function adicionarElemento() {//interação direta com o html, por isso tem o fu
 
   function buscarElemento(){
     //pegar valor input
-    const buscarElemento = document.getElementById("txtnovoCpf");
+    const buscarElemento = document.getElementById("txtnovoCpf"); //Buscar por CPF
     let encontrado = false;
     let cont = 0;
     for(let item of minhaFila){

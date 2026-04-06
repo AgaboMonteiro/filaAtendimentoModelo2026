@@ -1,5 +1,5 @@
 function atualizarUltimoAtendimento(){
-    const ultimo = localStorage.getItem('ultimoAtendido'); //Busca no navegador um valor salvo com a chave 'ultimoAtendido'
+    const ultimo = localStorage.getItem('ultimoAtendido'); //Criar uma função chamada atualizarAtendimento contendo:
     if (ultimo) {//Verifica se existe algum valor salvo
         document.getElementById('ultimoAtendimento').textContent = ultimo; //Pega um elemento do HTML com esse ID
     }
@@ -8,6 +8,6 @@ function atualizarUltimoAtendimento(){
 // Chamar no corpo do script 
 atualizarUltimoAtendimento(); //Atualiza o texto exibido na tela com o valor do localStorage
 
-// Definir o refresh a cada 1000ms 
+// A função deve ser chamada no corpo do painelController.js e definido o refresh da página a cada 1000ms
 setInterval(atualizarUltimoAtendimento,1000);
 
