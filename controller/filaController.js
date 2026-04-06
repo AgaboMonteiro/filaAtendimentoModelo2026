@@ -6,10 +6,7 @@ function adicionarElemento() {//interação direta com o html, por isso tem o fu
   const nome = document.getElementById("txtnovoNome");//colocando o nome no novoElemento
   const cpf = document.getElementById("txtnovoCpf");//ADD CPF
 
-  const data = obterDataAtual();
-  const hora = obterHoraAtual();
-
-  const novoAtendimento = new Atendimento(nome.value,cpf.value,data,hora);
+  const novoAtendimento = new Atendimento(nome.value,cpf.value);
 
   if (minhaFila.enqueue(novoAtendimento)) {//se deu certo de inserir
     mostrarFila(); //mostrar fila
@@ -46,15 +43,26 @@ function adicionarElemento() {//interação direta com o html, por isso tem o fu
   }*/
 
 
-  function removerElemento(){
-    let removido = minhaFila.dequeue();
-    if(removido===null)
-      alert("FILA VAZIA");
+  function removerElemento(){ //funcao remove elemento
+    let removido = minhaFila.dequeue(); //chama método dequeue, remove primeiro elemento
+    if(removido!==null){ //se a fila for diferente de nulo
+
+      const mensagemRemocao = document.getElementById("mensagem-remocao");//busca o elemento html para mostrar a msg
+      const horaSaida = obterHoraAtual(); //obtem a hora atual do momento do atendimento
+      const tempoEspera = calcularDiferencaHoras(removido.hora, horaSaida); ////chama a funcao diferença de horas para calcular o tempo de espera
+      
+      const mensagem = `Atendido: ${removido.nome} | Entrada: ${removido.hora} | Saída: ${horaSaida} | Tempo: ${tempoEspera}`;//mensagem exibida no painel e salva localStorage
+      mostrarFila(); // Atualiza o label na tela
+
+      //Insere uma mensagem dinâmica no HTML
+      mensagemRemocao.textContent = (`Atendido: ${removido.nome}, Chegou ás ${removido.hora} está sendo atendido(a) às ${horaSaida}. Tempo de espera: ${tempoEspera}`)
+      
+      // Armazenar no localStorage para o painel. Chave: ultimoAtendimento, mensagem: mensagem
+      localStorage.setItem('ultimoAtendido', mensagem);
+
+    }
     else {
-      alert("ATENDIDO "+removido);
-      mostrarFila(); //retirar aqui
-
-
+      alert("A fila já está vazia!");
     }
   }
 
