@@ -1,8 +1,8 @@
 function atualizarUltimoAtendimento(){
     const ultimo = localStorage.getItem('ultimoAtendido'); //Criar uma função chamada atualizarAtendimento contendo:
-    if (ultimo) {//Verifica se existe algum valor salvo
+    
         document.getElementById('ultimoAtendimento').textContent = ultimo; //Pega um elemento do HTML com esse ID
-    }
+
 }
 
 // Chamar no corpo do script 

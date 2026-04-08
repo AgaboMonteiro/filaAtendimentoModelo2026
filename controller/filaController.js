@@ -52,7 +52,7 @@ function adicionarElemento() {//interação direta com o html, por isso tem o fu
       const horaSaida = obterHoraAtual(); //obtem a hora atual do momento do atendimento
       const tempoEspera = calcularDiferencaHoras(removido.hora, horaSaida); ////chama a funcao diferença de horas para calcular o tempo de espera
       
-      const mensagem = `Atendido: ${removido.nome} | Entrada: ${removido.hora} | Saída: ${horaSaida} | Tempo: ${tempoEspera}`;//mensagem exibida no painel e salva localStorage
+      const mensagem = `Atendido: ${removido.nome}`;//mensagem exibida no painel e salva localStorage
       mostrarFila(); // Atualiza o label na tela; Apresentar pessoas na fila (Mostra o nome de todos da fila)
 
       //Insere uma mensagem dinâmica no HTML
